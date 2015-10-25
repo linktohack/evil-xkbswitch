@@ -1,0 +1,21 @@
+* evil-xkbswitch
+Input method switching corresponds to current state
+* Usage
+#+BEGIN_SRC emacs-lisp
+(require 'use-package)
+(use-package evil-xkbswitch
+  :if (featurep 'ns)
+  :load-path "path/to/evil-xkbswitch/"
+  :diminish evil-xkbswitch-mode
+  :config (evil-xkbswitch-mode 1))
+#+END_SRC
+
+Remove ~:load-path~ if install via =package.el=.
+* Limit
+Only working under OS X for now, =xkb= version should take little to
+no modification.
+* Binary
+=issw= can be got and compiled from
+[[https://github.com/vovkasm/input-source-switcher][here]]
+* License
+MIT
