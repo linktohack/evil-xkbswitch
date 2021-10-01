@@ -11,11 +11,29 @@ Input method switching corresponds to current state
 #+END_SRC
 
 Remove ~:load-path~ if install via =package.el=.
+
+** Doom emacs
+#+BEGIN_SRC emacs-lisp
+(package! evil-xkbswitch
+  :recipe (:host github :repo "linktohack/evil-xkbswitch"))
+#+END_SRC
+
+* Configuration
+On Linux you may need to adjust US layout name. You can look it up with =xkb-switch -l=.
+
 * Limit
-Only working under OS X for now, =xkb= version should take little to
-no modification.
+Working under OS X and Linux for now, =xkb= version should take little to
+no modification. Despite the name Windows support is also feasible.
 * Binary
+** For OS X
 =issw= can be got and compiled from
 [[https://github.com/vovkasm/input-source-switcher][here]]
+** For Linux
+=xkb-switch= can be got and compiled from
+[[https://github.com/grwlf/xkb-switch][here]]
+or installed from AUR (if Arch Linux):
+#+BEGIN_SRC
+yay -S xkb-switch
+#+END_SRC
 * License
 MIT

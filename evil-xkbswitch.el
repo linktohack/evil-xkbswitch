@@ -1,8 +1,10 @@
 ;;; evil-xkbswitch.el --- Input method switching corresponds to current state.
 
-(defvar evil-xkbswitch-binary "issw"
-  "Switch input binary.")
-(defvar evil-xkbswitch--us-method "com.apple.keylayout.US"
+(defvar evil-xkbswitch-set-layout (if (eq system-type 'darwin) "issw" "xkb-switch -s")
+  "Set xkb layout.")
+(defvar evil-xkbswitch-get-layout (if (eq system-type 'darwin) "issw" "xkb-switch")
+  "Get xkb layout.")
+(defvar evil-xkbswitch--us-method (if (eq system-type 'darwin) "com.apple.keylayout.US" "us")
   "US input method.")
 (defvar evil-xkbswitch--last-method nil
   "Last input method.")
@@ -14,24 +16,24 @@
 Save last method into `evil-xkbswitch--last-method'."
   (interactive)
   (setq evil-xkbswitch--last-method
-        (shell-command-to-string
-         (format "%s" evil-xkbswitch-binary)))
-  (shell-command-to-string (format "%s %s"
-                                   evil-xkbswitch-binary
+        (replace-regexp-in-string "\n" ""
+          (shell-command-to-string
+            (format "%s" evil-xkbswitch-get-layout))))
+  (shell-command-to-string (format "%s '%s'"
+                                   evil-xkbswitch-set-layout
                                    evil-xkbswitch--us-method))
   (when evil-xkbswitch-verbose
-    (message "Current method %s" evil-xkbswitch--us-method)))
+    (message "Current method (us) %s" evil-xkbswitch--us-method)))
 
 (defun evil-xkbswitch-to-alternate ()
   "Restore last input method."
   (interactive)
   (when evil-xkbswitch--last-method
-    (shell-command-to-string
-     (format "%s %s"
-             evil-xkbswitch-binary
-             evil-xkbswitch--last-method)))
+    (shell-command-to-string (format "%s '%s'"
+                                     evil-xkbswitch-set-layout
+                                     evil-xkbswitch--last-method)))
   (when evil-xkbswitch-verbose
-    (message "Current method %s" evil-xkbswitch--last-method)))
+    (message "Current method (alternate) %s" evil-xkbswitch--last-method)))
 
 ;;;###autoload
 (define-minor-mode evil-xkbswitch-mode
