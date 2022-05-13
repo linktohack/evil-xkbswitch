@@ -43,8 +43,12 @@ Save last method into `evil-xkbswitch--last-method'."
   (if evil-xkbswitch-mode
       (progn
         (add-hook 'evil-insert-state-entry-hook #'evil-xkbswitch-to-alternate)
-        (add-hook 'evil-insert-state-exit-hook #'evil-xkbswitch-to-us))
+        (add-hook 'evil-insert-state-exit-hook #'evil-xkbswitch-to-us)
+        (add-hook 'evil-replace-state-entry-hook #'evil-xkbswitch-to-alternate)
+        (add-hook 'evil-replace-state-exit-hook #'evil-xkbswitch-to-us))
     (remove-hook 'evil-insert-state-entry-hook #'evil-xkbswitch-to-alternate)
-    (remove-hook 'evil-insert-state-exit-hook #'evil-xkbswitch-to-us)))
+    (remove-hook 'evil-insert-state-exit-hook #'evil-xkbswitch-to-us)
+    (remove-hook 'evil-replace-state-entry-hook #'evil-xkbswitch-to-alternate)
+    (remove-hook 'evil-replace-state-exit-hook #'evil-xkbswitch-to-us)))
 
 (provide 'evil-xkbswitch)
