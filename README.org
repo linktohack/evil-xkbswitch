@@ -35,5 +35,16 @@ or installed from AUR (if Arch Linux):
 #+BEGIN_SRC
 yay -S xkb-switch
 #+END_SRC
+** For GNOME
+Use [[https://github.com/lyokha/g3kb-switch][g3kb-switch]]. With GNOME 41 and newer you will also need to install and enable G3kbSwitch GNOME Shell extension. On Arch Linux (installs program and extension):
+#+BEGIN_SRC
+yay -S g3kb-switch
+#+END_SRC
+You will also need to customize those variables in your config:
+#+BEGIN_SRC emacs-lisp
+(setq evil-xkbswitch-set-layout "g3kb-switch -s")
+(setq evil-xkbswitch-get-layout "g3kb-switch")
+#+END_SRC
+
 * License
 MIT
