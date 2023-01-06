@@ -39,9 +39,9 @@ Save last method into `evil-xkbswitch--last-method'."
 
 (defun evil-xkbswitch--wrapper-function (original-fun &rest args)
   "Use alternate layout while ORIGINAL-FUN called with ARGS is running."
-  (prog2
-    (evil-xkbswitch-to-alternate)
-    (apply original-fun args)
+  (evil-xkbswitch-to-alternate)
+  (unwind-protect
+      (apply original-fun args)
     (evil-xkbswitch-to-us)))
 
 (defun evil-xkbswitch--wrap-function (fun)
