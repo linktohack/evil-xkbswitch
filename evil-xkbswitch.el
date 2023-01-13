@@ -51,4 +51,6 @@ Save last method into `evil-xkbswitch--last-method'."
     (remove-hook 'evil-replace-state-entry-hook #'evil-xkbswitch-to-alternate)
     (remove-hook 'evil-replace-state-exit-hook #'evil-xkbswitch-to-us)))
 
+(define-global-minor-mode global-evil-xkbswitch-mode evil-xkbswitch-mode evil-xkbswitch-mode)
+
 (provide 'evil-xkbswitch)
