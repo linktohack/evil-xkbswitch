@@ -46,5 +46,9 @@ You will also need to customize those variables in your config:
 (setq evil-xkbswitch-get-layout "g3kb-switch")
 #+END_SRC
 
+* Contributors
+Thanks
+- [[https://github.com/Layerex][@Layerex]] for various improvment
 * License
 MIT
+
